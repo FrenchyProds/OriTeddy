@@ -1,5 +1,145 @@
 @import 'header.scss';
+@import 'footer.scss';
+
+@media (max-width: 850px) {
+    .teddyImport {
+        grid-template-areas:
+        'name name'
+        'photo photo'
+        'info info'
+        'panier panier' !important;
+        padding-top: 1rem;
+        a {
+            margin: auto;
+        }
+        .teddyPhoto {
+            margin: auto;
+            max-width: 60vw;
+        }
+        .teddyInfo {
+            text-align: center;
+        }
+        .checkout {
+            max-width: 60vw;
+        }
+    }
+
+    .teddyColorLayout {
+        padding-top: 1rem;
+        display: flex !important;
+        flex-direction: column;
+        margin: auto;
+    }
+    .teddyColors {
+        bottom: 1vh !important;
+    }
+}
 
 body {
     margin: 0rem;
+}
+
+.teddyImport {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'photo name'
+    'photo info'
+    'photo .'
+    '. panier';
+    max-width: 95vw;
+    margin: auto;
+    margin-bottom: 1em;
+    padding-top: 2rem;
+}
+
+.teddyName {
+    grid-area: name;
+    font-size: 1.8rem;
+}
+
+select {
+    display: table-row;
+    max-height: 3vh;
+}
+
+select::after {
+    content: none;
+}
+
+option {
+    display: table-cell;
+    font-size: 1.3rem;
+}
+
+.teddyInfo {
+    grid-area: info;
+    text-align: center;
+    padding-left: 0rem;
+}
+
+.teddyPhoto {
+    margin: auto;
+    grid-area: photo;
+    max-width: 35vw;
+    border: 10px solid #444;
+    box-shadow: 3px 2px 2px 1.5px rgba(145, 133, 133, 0.6);
+}
+
+#product-pull {
+    text-align: center;
+    li {
+        list-style: none;
+        font-size: 1.4rem;
+        font-weight: 400;
+        padding: 1rem 2.5rem;
+        &#price {
+            font-weight: bold;
+        }
+    }
+}
+
+.checkout {
+    flex: 1;
+    display: flex;
+    margin: auto;
+    color: #fff;
+    background-color: #0090e3;
+    max-width: 30vw;
+    grid-area: panier;
+    justify-content: flex-end;
+    & .icon-card {
+            font-size: 22px;
+            padding: 5px 8px;
+            justify-self: center;
+    }
+  }
+
+  .btn-default {
+  flex: 1;
+  transition: 0.4s;
+  color: #fff;
+  background-color: #303030;
+  text-transform: uppercase;
+}
+
+.teddyColorLayout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-areas: 'color .'
+    '. .';
+}
+
+.teddyColors {
+    position: relative;
+    bottom: 4vh;
+    grid-area: color;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+    font-size: 1.4rem;
+    margin: auto; 
+    max-width: fit-content;
+    text-align: center;
 }

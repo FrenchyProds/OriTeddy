@@ -1,5 +1,101 @@
 @import 'header.scss';
+@import 'footer.scss';
+
+
+@media (max-width: 850px) {
+    .Norbert {
+        grid-template-areas:
+        'name name'
+        'photo photo'
+        'info info'
+        'button button' !important;
+        a {
+            margin: auto;
+        }
+        .teddyPhoto {
+            margin: auto;
+            max-width: 60vw;
+        }
+        .teddyInfo {
+            text-align: center;
+        }
+    }
+}
 
 body {
     margin: 0rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+#product {
+    padding: 3rem 0rem;
+}
+
+#mainPage {
+    text-align: center;
+    li {
+        list-style: none;
+        line-height: 1.5;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+}
+
+.Norbert{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'photo name'
+    'photo info'
+    'photo button';
+    border: 10px double #343a40;
+    max-width: 95vw;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+#mainPage .teddyName {
+    display: flex;
+    grid-area: name; 
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;  
+    justify-content: center;
+    align-self: center;
+}
+
+.teddyInfo {
+    grid-area: info;
+    text-align: center;
+    padding-left: 0rem;
+}
+
+.teddyPhoto {
+    grid-area: photo;
+    max-width: 35vw;
+    border: 4px solid #444;
+    box-shadow: 2px 0px 0px 0px rgba(145, 133, 133, 0.6);
+}
+
+.Arnold, .Carl, .Gustav, .Garfunkel {
+    @extend .Norbert;
+}
+
+#btnCustom {
+    grid-area: button;
+    font-size: 1.4rem;
+    width: 70%;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid black;
+	display:inline-block;
+	cursor:pointer;
+    color:#333333;
+    margin: 0rem auto 2rem auto;
 }
