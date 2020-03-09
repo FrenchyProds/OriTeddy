@@ -174,6 +174,11 @@ i {
   padding: 0.5rem 0.5rem;
 }
 
+@media (max-width: 1150px) {
+  #btnCustom {
+    font-size: 1.3rem !important;
+  }
+}
 @media (max-width: 850px) {
   .Norbert, .Arnold, .Carl, .Gustav, .Garfunkel {
     grid-template-areas: "name name" "photo photo" "info info" "button button" !important;
@@ -191,6 +196,7 @@ i {
 }
 body {
   margin: 0rem;
+  background-color: #f1eaea;
 }
 
 h2 {
@@ -207,19 +213,20 @@ h2 {
 #mainPage li {
   list-style: none;
   line-height: 1.5;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 .Norbert, .Arnold, .Carl, .Gustav, .Garfunkel {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1.3fr;
   grid-template-rows: auto;
   grid-template-areas: "photo name" "photo info" "photo button";
   border: 10px double #343a40;
   max-width: 95vw;
   margin: auto;
   margin-bottom: 1em;
+  background-color: #fff;
 }
 
 #mainPage .teddyName {
@@ -247,7 +254,7 @@ h2 {
   -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   grid-area: photo;
-  max-width: 35vw;
+  max-width: 40vw;
   border: 4px solid #444;
   box-shadow: 2px 0px 0px 0px rgba(145, 133, 133, 0.6);
 }
@@ -256,17 +263,20 @@ h2 {
   -ms-grid-row: 3;
   -ms-grid-column: 2;
   grid-area: button;
-  font-size: 1.4rem;
-  width: 70%;
+  font-size: 1.6rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-height: 6vh;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   background-color: #ffffff;
   border-radius: 6px;
-  border: 1px solid black;
+  border: 2px solid black;
   display: inline-block;
   cursor: pointer;
   color: #333333;
-  margin: 0rem auto 2rem auto;
+  margin: 0rem auto 1.5rem auto;
 }
 
 @media (max-width: 850px) {
@@ -290,4 +300,8 @@ h2 {
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
+}
+#btnCustom i {
+  padding-right: 1rem;
+  color: #333333;
 }

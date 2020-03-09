@@ -4,3 +4,76 @@
 body {
     margin: 0rem;
 }
+
+#checkoutTitle {
+    text-align: center;
+}
+
+#container img {
+    margin: auto;
+    grid-area: photo;
+    max-width: 35vw;
+    border: 10px solid #444;
+    box-shadow: 3px 2px 2px 1.5px rgba(145, 133, 133, 0.6);
+}
+
+.mainContainer {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'photo name button'
+    'photo quantity totalPrice'
+    'photo color totalPrice'
+    'photo price .';
+    max-width: 95vw;
+    margin: auto;
+    margin-bottom: 1em;
+    border: 1px solid black;
+}
+
+.teddyImg {
+    grid-area: photo;
+    margin: auto 0rem;
+}
+
+.teddyName {
+    grid-area: name;
+    text-align: center;
+}
+
+.teddyColor {
+    grid-area: color;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.teddyQuantity {
+    grid-area: quantity;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.teddyPrice {
+    grid-area: price;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.TeddyTotalPrice {
+    grid-area: totalPrice;
+    text-align: center;
+    margin: auto 0rem;
+    font-size: 1.3rem;
+}
+
+.deleteButton {
+    max-width: 6vw;
+    max-height: 5vh;
+    grid-area: button;
+    margin: 0rem 0rem 2rem auto;
+    padding: 0rem;
+    & i {
+        margin: auto;
+    }
+}

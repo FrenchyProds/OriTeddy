@@ -7,8 +7,10 @@
         'name name'
         'photo photo'
         'info info'
+        'quantity quantity'
         'panier panier' !important;
-        padding-top: 1rem;
+        padding-top: 0rem !important;
+        }
         a {
             margin: auto;
         }
@@ -18,11 +20,17 @@
         }
         .teddyInfo {
             text-align: center;
+            margin-bottom: 0rem;
         }
         .checkout {
-            max-width: 60vw;
+            max-width: 60vw !important;
+            font-size: 1.3rem;
         }
-    }
+        .quantityDiv {
+            position: relative;
+            padding: 1.5rem 0rem;
+            bottom: 1rem;
+        }
 
     .teddyColorLayout {
         padding-top: 1rem;
@@ -31,12 +39,22 @@
         margin: auto;
     }
     .teddyColors {
-        bottom: 1vh !important;
+        bottom: 11vh !important;
+    }
+    .checkout {
+        top: 11vh !important;
+    }
+    select {
+        height: 3.5vh !important;
     }
 }
 
 body {
     margin: 0rem;
+}
+
+#container {
+    background-color: rgb(241, 234, 234);
 }
 
 .teddyImport {
@@ -45,6 +63,7 @@ body {
     grid-template-rows: auto;
     grid-template-areas: 
     'photo name'
+    'photo quantity'
     'photo info'
     'photo .'
     '. panier';
@@ -61,7 +80,8 @@ body {
 
 select {
     display: table-row;
-    max-height: 3vh;
+    height: 3.3vh;
+    overflow: hidden;
 }
 
 select::after {
@@ -72,6 +92,17 @@ option {
     display: table-cell;
     font-size: 1.3rem;
 }
+
+.quantityDiv {
+    grid-area: quantity;
+    font-size: 1.4rem;
+    & input {
+        max-width: 50vw;
+        min-width: 20vw;
+        text-align: center;
+    }
+}
+
 
 .teddyInfo {
     grid-area: info;
@@ -91,7 +122,7 @@ option {
     text-align: center;
     li {
         list-style: none;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: 400;
         padding: 1rem 2.5rem;
         &#price {
@@ -101,6 +132,9 @@ option {
 }
 
 .checkout {
+    transform: scale(1.4);
+    position: relative;
+    top: 3.5vh;
     flex: 1;
     display: flex;
     margin: auto;
@@ -133,7 +167,7 @@ option {
 
 .teddyColors {
     position: relative;
-    bottom: 4vh;
+    bottom: 3vh;
     grid-area: color;
     display: flex;
     flex-direction: column;
@@ -142,4 +176,26 @@ option {
     margin: auto; 
     max-width: fit-content;
     text-align: center;
+    option {
+        min-height: fit-content;
+    }
+}
+
+label {
+    padding-bottom: 0.5rem;
+}
+
+.panierLink {
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+ .panierLink button {
+     font-size: 1.5rem;
+     background-color: #333;
+     color: #FFF;
+     &:hover {
+         color: #333;
+         background-color: #FFF;
+     }
 }

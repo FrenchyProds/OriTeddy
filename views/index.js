@@ -15,7 +15,7 @@ async function getTeddies() {
                     <li id="price">Prix: ${price/100}€</li> 
                 </ul> 
                 <img src="${imageUrl}" alt="Photo de ${name}" class="teddyPhoto"></img>
-                <button onclick='location.href="product-page.html?id=${_id}"' type="button" id="btnCustom">Personnaliser mon teddy</button>
+                <button onclick='location.href="product-page.html?id=${_id}"' type="button" id="btnCustom"><i class="fas fa-cog"></i>Personnaliser mon teddy</button>
             </div>`;
         })
     })

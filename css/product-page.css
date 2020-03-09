@@ -176,21 +176,33 @@ i {
 
 @media (max-width: 850px) {
   .teddyImport {
-    grid-template-areas: "name name" "photo photo" "info info" "panier panier" !important;
-    padding-top: 1rem;
+    grid-template-areas: "name name" "photo photo" "info info" "quantity quantity" "panier panier" !important;
+    padding-top: 0rem !important;
   }
-  .teddyImport a {
+
+  a {
     margin: auto;
   }
-  .teddyImport .teddyPhoto {
+
+  .teddyPhoto {
     margin: auto;
     max-width: 60vw;
   }
-  .teddyImport .teddyInfo {
+
+  .teddyInfo {
     text-align: center;
+    margin-bottom: 0rem;
   }
-  .teddyImport .checkout {
-    max-width: 60vw;
+
+  .checkout {
+    max-width: 60vw !important;
+    font-size: 1.3rem;
+  }
+
+  .quantityDiv {
+    position: relative;
+    padding: 1.5rem 0rem;
+    bottom: 1rem;
   }
 
   .teddyColorLayout {
@@ -201,18 +213,30 @@ i {
   }
 
   .teddyColors {
-    bottom: 1vh !important;
+    bottom: 11vh !important;
+  }
+
+  .checkout {
+    top: 11vh !important;
+  }
+
+  select {
+    height: 3.5vh !important;
   }
 }
 body {
   margin: 0rem;
 }
 
+#container {
+  background-color: #f1eaea;
+}
+
 .teddyImport {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   grid-template-rows: auto;
-  grid-template-areas: "photo name" "photo info" "photo ." ". panier";
+  grid-template-areas: "photo name" "photo quantity" "photo info" "photo ." ". panier";
   max-width: 95vw;
   margin: auto;
   margin-bottom: 1em;
@@ -228,7 +252,8 @@ body {
 
 select {
   display: table-row;
-  max-height: 3vh;
+  height: 3.3vh;
+  overflow: hidden;
 }
 
 select::after {
@@ -240,8 +265,20 @@ option {
   font-size: 1.3rem;
 }
 
-.teddyInfo {
+.quantityDiv {
   -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: quantity;
+  font-size: 1.4rem;
+}
+.quantityDiv input {
+  max-width: 50vw;
+  min-width: 20vw;
+  text-align: center;
+}
+
+.teddyInfo {
+  -ms-grid-row: 3;
   -ms-grid-column: 2;
   grid-area: info;
   text-align: center;
@@ -250,7 +287,7 @@ option {
 
 .teddyPhoto {
   -ms-grid-row: 1;
-  -ms-grid-row-span: 3;
+  -ms-grid-row-span: 4;
   -ms-grid-column: 1;
   margin: auto;
   grid-area: photo;
@@ -264,7 +301,7 @@ option {
 }
 #product-pull li {
   list-style: none;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   padding: 1rem 2.5rem;
 }
@@ -273,8 +310,11 @@ option {
 }
 
 .checkout {
-  -ms-grid-row: 4;
+  -ms-grid-row: 5;
   -ms-grid-column: 2;
+  transform: scale(1.4);
+  position: relative;
+  top: 3.5vh;
   flex: 1;
   display: flex;
   margin: auto;
@@ -291,6 +331,11 @@ option {
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
+  .quantityDiv {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+  }
   .teddyInfo {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
@@ -302,7 +347,7 @@ option {
     -ms-grid-column-span: 2;
   }
   .checkout {
-    -ms-grid-row: 4;
+    -ms-grid-row: 5;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
@@ -331,7 +376,7 @@ option {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   position: relative;
-  bottom: 4vh;
+  bottom: 3vh;
   grid-area: color;
   display: flex;
   flex-direction: column;
@@ -342,4 +387,28 @@ option {
   max-width: -moz-fit-content;
   max-width: fit-content;
   text-align: center;
+}
+.teddyColors option {
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
+label {
+  padding-bottom: 0.5rem;
+}
+
+.panierLink {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.panierLink button {
+  font-size: 1.5rem;
+  background-color: #333;
+  color: #FFF;
+}
+.panierLink button:hover {
+  color: #333;
+  background-color: #FFF;
 }
