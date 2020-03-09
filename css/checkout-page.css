@@ -179,10 +179,18 @@ body {
 }
 
 #checkoutTitle {
+  margin: auto;
   text-align: center;
+  line-height: 1.5;
+  padding: 2rem 0rem;
+  max-width: 70vw;
 }
 
-#container img {
+#container {
+  background-color: #f1eaea;
+}
+
+#teddyContainer img {
   -ms-grid-row: 1;
   -ms-grid-row-span: 4;
   -ms-grid-column: 1;

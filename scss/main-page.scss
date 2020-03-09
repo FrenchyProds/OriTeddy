@@ -9,7 +9,11 @@
 }
 
 @media (max-width: 850px) {
+    body {
+        background-color: #fff !important;
+    }
     .Norbert {
+        background-color: rgb(241, 234, 234) !important;
         grid-template-areas:
         'name name'
         'photo photo'

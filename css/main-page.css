@@ -180,7 +180,12 @@ i {
   }
 }
 @media (max-width: 850px) {
+  body {
+    background-color: #fff !important;
+  }
+
   .Norbert, .Arnold, .Carl, .Gustav, .Garfunkel {
+    background-color: #f1eaea !important;
     grid-template-areas: "name name" "photo photo" "info info" "button button" !important;
   }
   .Norbert a, .Arnold a, .Carl a, .Gustav a, .Garfunkel a {
@@ -280,21 +285,25 @@ h2 {
 }
 
 @media (max-width: 850px) {
+
   #mainPage .teddyName {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
+
   .teddyInfo {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
+
   .teddyPhoto {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
   }
+
   #btnCustom {
     -ms-grid-row: 4;
     -ms-grid-column: 1;

@@ -2,6 +2,7 @@ const urlAPI = "http://localhost:3000/api/teddies";
 const teddyAppend = document.getElementById("product-pull");
 const teddyColorAppend = document.getElementById("teddy-colors");
 
+localStorage.clear();
 
 async function getTeddies() {
     let response = await fetch(urlAPI);
@@ -50,7 +51,7 @@ async function getTeddies() {
                     
                     panier.addEventListener('click', function(e) {
                         
-                    var value = document.querySelector('select').value;
+                    var color = document.querySelector('select').value;
 
                     var quantity = document.getElementById('quantityInput').value;
 
@@ -60,13 +61,13 @@ async function getTeddies() {
                     
                     } else {
 
-                    console.log(localStorage);
+                     console.log(localStorage);
 
                         var cart = {
                             "id" : id,
                             "name" : name,
                             "price" : price/100,
-                            "color" : value,
+                            "color" : color,
                             "quantity" : quantity,
                             "imageURL" : imageUrl
                         }
@@ -75,14 +76,39 @@ async function getTeddies() {
 
                         if (localStorage.getItem('teddyCart') === null) {
 
+                            cartItems.push(cart);
+
+                            localStorage.setItem("teddyCart", JSON.stringify(cart));
+
+                        } else {   
+                            
+                            for(let i = 0; i < cartItems.length; i++) {
+                                
+                            if(cartItems[i].name == cart.name && cartItems[i].color == cart.color) {
+                          
+                              let cartItemsQuantityNumber = Number(cartItems[i].quantity);
+                                // console.log(cartItemsQuantityNumber);
+                              let cartQuantityNumber = Number(cart.quantity);
+                                // console.log(cartQuantityNumber);
+                                console.log(i);
+                          
+                              let sumQuantity = cartItemsQuantityNumber + cartQuantityNumber;
+                          
+                              cartItems[i].quantity = sumQuantity.toString();
+
+                              // console.log(sumQuantity);
+
+                            } else {       
+                                
+                                // console.log(cart);
+                                    cartItems.push(cart); 
+                                    
+
+                                } 
+                            }   
+                        }
                             localStorage.setItem("teddyCart", JSON.stringify(cartItems));
 
-                        } else {
-                            
-                                    cartItems.push(cart);
-                            }   
-
-                            localStorage.setItem("teddyCart", JSON.stringify(cartItems));  
                         } 
                  });
              }
