@@ -2,8 +2,6 @@ const urlAPI = "http://localhost:3000/api/teddies";
 const teddyAppend = document.getElementById("product-pull");
 const teddyColorAppend = document.getElementById("teddy-colors");
 
-localStorage.clear();
-
 async function getTeddies() {
     let response = await fetch(urlAPI);
     let data = await response.json()
@@ -24,7 +22,7 @@ async function getTeddies() {
                             <img src="${imageUrl}" alt="Photo de ${name}" class="teddyPhoto"></img>
                             <div class="quantityDiv">
                                 <label for="quantityInput">Combien d'oursons voulez-vous ajouter à votre panier ?</label><br />
-                                <input step="number" placeholder="Quantité désirée" 
+                                <input step="number" placeholder="Quantité" 
                                     class="quantity-input" id="quantityInput" 
                                     name="quantityInput" type="number" min="1" max="99">
                                 </input>
@@ -76,39 +74,31 @@ async function getTeddies() {
 
                         if (localStorage.getItem('teddyCart') === null) {
 
-                            cartItems.push(cart);
-
                             localStorage.setItem("teddyCart", JSON.stringify(cart));
 
-                        } else {   
+                        } else {    
+                            let itemHasChanged = false;
                             
                             for(let i = 0; i < cartItems.length; i++) {
                                 
-                            if(cartItems[i].name == cart.name && cartItems[i].color == cart.color) {
-                          
-                              let cartItemsQuantityNumber = Number(cartItems[i].quantity);
-                                // console.log(cartItemsQuantityNumber);
-                              let cartQuantityNumber = Number(cart.quantity);
-                                // console.log(cartQuantityNumber);
-                                console.log(i);
-                          
-                              let sumQuantity = cartItemsQuantityNumber + cartQuantityNumber;
-                          
-                              cartItems[i].quantity = sumQuantity.toString();
+                                if((cartItems[i].name == cart.name) && cartItems[i].color == cart.color) {
+                              
+                                  let cartItemsQuantityNumber = Number(cartItems[i].quantity);
+                                  let cartQuantityNumber = Number(cart.quantity);
+                              
+                                  let sumQuantity = cartItemsQuantityNumber + cartQuantityNumber;
+                              
+                                  cartItems[i].quantity = sumQuantity.toString();
+                                  itemHasChanged = true;
+                                }
+                            }
 
-                              // console.log(sumQuantity);
-
-                            } else {       
-                                
-                                // console.log(cart);
-                                    cartItems.push(cart); 
-                                    
-
-                                } 
-                            }   
+                        if(itemHasChanged == false) {
+                            cartItems.push(cart); 
                         }
+                    }
                             localStorage.setItem("teddyCart", JSON.stringify(cartItems));
-
+                            
                         } 
                  });
              }

@@ -181,7 +181,7 @@ i {
 }
 @media (max-width: 850px) {
   body {
-    background-color: #fff !important;
+    background-color: #e4d6d6 !important;
   }
 
   .Norbert, .Arnold, .Carl, .Gustav, .Garfunkel {
@@ -201,7 +201,7 @@ i {
 }
 body {
   margin: 0rem;
-  background-color: #f1eaea;
+  background-color: #e4d6d6;
 }
 
 h2 {
@@ -231,7 +231,7 @@ h2 {
   max-width: 95vw;
   margin: auto;
   margin-bottom: 1em;
-  background-color: #fff;
+  background-color: #f1eaea;
 }
 
 #mainPage .teddyName {

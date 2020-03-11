@@ -1,8 +1,6 @@
 const cartItems = JSON.parse(localStorage.getItem('teddyCart')) || []; 
 
-const cartPrice = JSON.parse(localStorage.getItem('teddyCart', 'price')) || [];
-
-console.log(cartPrice);
+const buttonDown = document.getElementById('down');
 
 function teddyGet() {
     
@@ -10,17 +8,9 @@ function teddyGet() {
 
     let teddyContainer = document.getElementById('teddyContainer');
 
-    let finalCheckout = document.getElementById('finalCheckout');
+    let totalCartCost = document.getElementById('finalCheckout');  
 
-    let priceCount = document.getElementsByClassName('TeddyTotalPrice-Amount');
-
-    for (let i = 0; i < priceCount.length; i++) {
-
-    }
-
-    console.log(priceCount);
-
-    console.log(cartItems);
+    let finalCheckout = 0;
 
     if(!cartItems.length) {
 
@@ -33,7 +23,6 @@ function teddyGet() {
         cartItems.forEach(cartItem => {
 
             let totalPrice = (cartItem.quantity * cartItem.price);
-            console.log(totalPrice);
             
             teddyContainer.innerHTML += `
                 <div class="mainContainer">
@@ -51,26 +40,65 @@ function teddyGet() {
                         </div>
 
                         <div class="teddyQuantity">
-                            <p> Quantité : ${cartItem.quantity} </p>
+                            <button 
+                                type="button"
+                                id="up";
+                                class="btn-up">
+                                <i class="fas fa-angle-up">
+                                </i>
+                            </button>
+                            <p> Quantité : <span class="test">${cartItem.quantity}</span></p>
+                            <button 
+                                type="button"
+                                id="down";
+                                onclick="removeItem()";
+                                class="btn-down">
+                                <i class="fas fa-angle-down"></i>
+                            </button>
                         </div>
 
-                        <div>
+                        <div class="teddyPrix">
                             <p class="teddyPrice"> Prix unitaire : ${cartItem.price} € </p>
                         </div>
                     <div class="TeddyTotalPrice">
-                        <h3 class="TeddyTotalPrice-Title">Prix total pour cet article :</h3>
+                        <h3 class="TeddyTotalPrice-Title">Prix total pour cet article</h3>
                         <p><span class="TeddyTotalPrice-Amount">${cartItem.quantity * cartItem.price}</span> €</p>
                     </div>
-                    <label for="quantityInput">Vous souhaitez supprimer des oursons de votre panier ?</label><br />
-                                <input step="number" placeholder="Quantité désirée" 
-                                    class="quantity-delete" id="quantityDelete" 
-                                    name="quantityDelete" type="number" min="1" max="${cartItem.quantity}">
-                                </input>
-                </div>`;     
+                </div>`;  
+                
+                console.log(cartItem.quantity);
+
+                let buttonsUp = document.querySelectorAll('.btn-up');
+                console.log(buttonsUp);
+
         });
-        console.log(priceCount.length);
+                const TeddiesTotalPrice = [...document.getElementsByClassName('TeddyTotalPrice-Amount')];
+
+                TeddiesTotalPrice.forEach(teddy => {
+                    let teddyTotalPrice = parseInt(teddy.innerHTML, 10);
+
+                    finalCheckout += teddyTotalPrice;
+                })
+
+                
+
+                totalCartCost.innerHTML = finalCheckout + ' €';
     }
+
 }
+
+function confirmCart() {
+    document.getElementById("form").style.display="block";
+    document.querySelector(".hiddenOnForm").style.display="none";
+    document.querySelector('#container').style.backgroundColor="#f2f2f2";
+}
+
+function closeForm() {
+    document.getElementById("form").style.display="none";
+    document.querySelector(".hiddenOnForm").style.display="block";
+    document.querySelector('#container').style.backgroundColor="rgb(228, 214, 214)";
+  }
+
 
 
 

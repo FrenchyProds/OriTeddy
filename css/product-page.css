@@ -272,6 +272,7 @@ option {
   font-size: 1.4rem;
 }
 .quantityDiv input {
+  transform: scale(1.4);
   max-width: 50vw;
   min-width: 20vw;
   text-align: center;
@@ -376,7 +377,7 @@ option {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   position: relative;
-  bottom: 3vh;
+  bottom: 4vh;
   grid-area: color;
   display: flex;
   flex-direction: column;

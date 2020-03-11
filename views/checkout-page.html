@@ -12,7 +12,7 @@
 
         <script src="https://kit.fontawesome.com/c838d79e10.js" crossorigin="anonymous"></script>
 
-        <script src="checkout.js"></script>
+        <script defer src="checkout.js"></script>
 
         <title>Panier - Oriteddy - Finalisez votre commande !</title>
 
@@ -31,16 +31,53 @@
         </header>
 
         <div id="container">
-            <h2 id="checkoutTitle">
-            </h2>
-            
-            <section id="teddyContainer">
-            </section>
+            <div class="hiddenOnForm">
+                <h2 id="checkoutTitle">
+                </h2>
+                
+                <section id="teddyContainer">
+                </section>
 
-            <section id="finalCheckout">
-            </section>
+                <section id="finalPrice">
+                    <h2>Prix total du panier</h2>
+                    <h2 id="finalCheckout"></h2>
+                    <div class="checkout" id="addBtn">
+                        <button 
+                            type="button"
+                            id="confirmCart";
+                            onclick="confirmCart()";
+                            class="btn-Confirm";>
+                            Confirmer le panier
+                        </button>
+                        <i class="fas fa-shopping-cart icon-card"></i>
+                    </div>
+                </section>
+            </div>
 
             <section id="form">
+                <div id="onclick--form">
+                    <form action="" class="form-container">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" name="firstName" placeholder="Votre prénom..." required>
+
+                        <label for="lastName">Nom de Famille</label>
+                        <input type="text" name="lastName" placeholder="Votre nom..." required>
+
+                        <label for="address">Addresse</label>
+                        <input type="text" name="address" placeholder="Votre addresse..." required>
+
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" placeholder="Votre ville..." required>
+
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="exemple123@test.com" required>
+
+                        <div class="buttons">
+                            <input type="submit" value="Valider la commande" id="submitOrder">
+                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                        </div>
+                    </form>
+                </div>
             </section>
         </div>
         <footer>
