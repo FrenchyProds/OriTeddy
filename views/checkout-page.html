@@ -12,6 +12,8 @@
 
         <script src="https://kit.fontawesome.com/c838d79e10.js" crossorigin="anonymous"></script>
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <script defer src="checkout.js"></script>
 
         <title>Panier - Oriteddy - Finalisez votre commande !</title>
@@ -56,21 +58,21 @@
 
             <section id="form">
                 <div id="onclick--form">
-                    <form action="" class="form-container">
+                    <form class="form-container" id="postData">
                         <label for="firstName">Prénom</label>
-                        <input type="text" name="firstName" placeholder="Votre prénom..." required>
+                        <input type="text" name="firstName" placeholder="Votre prénom..." id="firstName" required>
 
                         <label for="lastName">Nom de Famille</label>
-                        <input type="text" name="lastName" placeholder="Votre nom..." required>
+                        <input type="text" name="lastName" placeholder="Votre nom..." id="lastName" required>
 
                         <label for="address">Addresse</label>
-                        <input type="text" name="address" placeholder="Votre addresse..." required>
+                        <input type="text" name="address" placeholder="Votre addresse..." id="address" required>
 
                         <label for="city">Ville</label>
-                        <input type="text" name="city" placeholder="Votre ville..." required>
+                        <input type="text" name="city" placeholder="Votre ville..." id="city" required>
 
                         <label for="email">Email</label>
-                        <input type="email" name="email" placeholder="exemple123@test.com" required>
+                        <input type="email" name="email" placeholder="exemple123@test.com" id="email" required>
 
                         <div class="buttons">
                             <input type="submit" value="Valider la commande" id="submitOrder">

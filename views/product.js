@@ -32,7 +32,7 @@ async function getTeddies() {
                                 <button 
                                     type="button"
                                     id="panier";
-                                    click="
+                                    onclick="";
                                     class="btn btn-default";">
                                     Ajouter au panier
                                 </button>
@@ -55,9 +55,11 @@ async function getTeddies() {
 
                     if (quantity < 1) { 
                         
-                        window.alert ("Merci de bien vouloir ajouter au minimum 1 ourson à votre panier");
+                        swal("Vous n'avez pas oublié quelque chose ?", "Il va vous falloir au moins 1 teddy !", "error");
                     
                     } else {
+
+                        swal("Produit ajouté au panier", "", "success");
 
                      console.log(localStorage);
 
@@ -106,7 +108,6 @@ async function getTeddies() {
     })
     return data;
 }
-
 
 window.onload = () => {
     getTeddies();

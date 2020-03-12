@@ -209,7 +209,8 @@ i {
 }
 @media (max-width: 768px) {
   .mainContainer {
-    grid-template-areas: "photo name" "quantity color" "price totalPrice" !important;
+    grid-template-columns: auto !important;
+    grid-template-areas: ". photo ." "name quantity color" "totalPrice quantity price" !important;
   }
   .mainContainer p {
     font-size: 1.6rem !important;
@@ -222,10 +223,16 @@ i {
 
   .teddyPrix {
     margin: auto 0rem;
+    padding-right: 0.5rem;
+  }
+
+  .TeddyTotalPrice {
+    padding-left: 0.5rem;
   }
 
   .teddyName {
     margin: auto 0rem;
+    padding: 0rem !important;
   }
   .teddyName h2 {
     font-size: 2.6rem;
@@ -238,15 +245,19 @@ i {
   .teddyColor {
     margin: auto auto;
     font-size: 1.4rem;
+    text-align: center;
+    padding-right: 0.5rem;
   }
 }
 @media (min-width: 768px) {
   .mainContainer p {
     font-size: 1.4rem;
   }
-
   .mainContainer .teddyName {
     font-size: 1.7rem;
+  }
+  .mainContainer .TeddyTotalPrice {
+    padding-right: 0.5rem;
   }
 }
 @media (min-width: 1150px) {
@@ -292,7 +303,7 @@ body {
 .mainContainer {
   background-color: #f1eaea;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 1.5fr 1fr 0.5fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: "photo name quantity totalPrice" "photo name quantity totalPrice" "photo color quantity price";
   max-width: 95vw;
@@ -315,7 +326,7 @@ body {
 .teddyName {
   grid-area: name;
   text-align: center;
-  padding-top: 1.5rem;
+  padding: 1.5rem 1rem 0rem;
 }
 
 .mainContainer > .teddyName {
@@ -327,7 +338,7 @@ body {
 .teddyColor {
   grid-area: color;
   font-size: 1.2rem;
-  padding-left: 2rem;
+  margin: auto;
 }
 
 .mainContainer > .teddyColor {
@@ -431,31 +442,32 @@ body {
 @media (max-width: 768px) {
   .mainContainer > img {
     -ms-grid-row: 1;
-    -ms-grid-column: 1;
+    -ms-grid-column: 2;
   }
   .mainContainer > .teddyImg {
     -ms-grid-row: 1;
-    -ms-grid-column: 1;
+    -ms-grid-column: 2;
   }
   .mainContainer > .teddyName {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
   }
   .mainContainer > .teddyColor {
     -ms-grid-row: 2;
-    -ms-grid-column: 2;
+    -ms-grid-column: 3;
   }
   .mainContainer > .teddyQuantity {
     -ms-grid-row: 2;
-    -ms-grid-column: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 2;
   }
   .mainContainer > .teddyPrix {
     -ms-grid-row: 3;
-    -ms-grid-column: 1;
+    -ms-grid-column: 3;
   }
   .mainContainer > .TeddyTotalPrice {
     -ms-grid-row: 3;
-    -ms-grid-column: 2;
+    -ms-grid-column: 1;
   }
 }
 .TeddyTotalPrice-Amount {
@@ -522,6 +534,14 @@ input[type=text], input[type=email], select, textarea {
   border-left: 0.6rem solid;
   border-left-color: palegreen;
   transition: all 0.5s ease-out;
+}
+
+input[type=text]:focus, input[type=email]:focus {
+  outline-color: salmon;
+}
+
+input[type=text]:valid:focus, input[type=email]:valid:focus {
+  outline-color: lime;
 }
 
 input[type=submit] {
