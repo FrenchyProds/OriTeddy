@@ -40,18 +40,31 @@
                 <section id="teddyContainer">
                 </section>
 
+               
+
                 <section id="finalPrice">
                     <h2>Prix total du panier</h2>
                     <h2 id="finalCheckout"></h2>
-                    <div class="checkout" id="addBtn">
-                        <button 
-                            type="button"
-                            id="confirmCart";
-                            onclick="confirmCart()";
-                            class="btn-Confirm";>
-                            Confirmer le panier
-                        </button>
-                        <i class="fas fa-shopping-cart icon-card"></i>
+                    <div class="doubleButton" id="addBtn">
+                        <section id="viderPanier">
+                            <button
+                                type="button";
+                                id="emptyCart";
+                                onclick="emptyCart()";>
+                                Vider le panier 
+                            </button>
+                            <i class="fas fa-trash"></i>
+                        </section>
+                        <section class="checkout" id="confirmPanier">
+                            <button 
+                                type="button";
+                                id="confirmCart";
+                                onclick="confirmCart()";
+                                class="btn-Confirm";>
+                                Confirmer le panier
+                            </button>
+                            <i class="fas fa-shopping-cart icon-card"></i>
+                        </section>
                     </div>
                 </section>
             </div>
@@ -65,8 +78,8 @@
                         <label for="lastName">Nom de Famille</label>
                         <input type="text" name="lastName" placeholder="Votre nom..." id="lastName" required>
 
-                        <label for="address">Addresse</label>
-                        <input type="text" name="address" placeholder="Votre addresse..." id="address" required>
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" placeholder="Votre adresse..." id="address" required>
 
                         <label for="city">Ville</label>
                         <input type="text" name="city" placeholder="Votre ville..." id="city" required>
@@ -75,10 +88,12 @@
                         <input type="email" name="email" placeholder="exemple123@test.com" id="email" required>
 
                         <div class="buttons">
-                            <input type="submit" value="Valider la commande" id="submitOrder">
+                            <button type="button" id="confirmOrder" onclick="orderTeddies()">Valider</button>
                             <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
                         </div>
                     </form>
+
+
                 </div>
             </section>
         </div>

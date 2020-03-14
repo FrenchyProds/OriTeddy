@@ -44,7 +44,7 @@ async function getTeddies() {
 
                 for (let i = 0; i < colors.length; i++) {
                     teddyColorAppend.innerHTML +=
-                    `<option value="${colors[i]}" selected="selected">${colors[i]} / </option>`;
+                    `<option value="${colors[i]}" selected="selected">${colors[i]} /</option>`;
                 }
                     
                     panier.addEventListener('click', function(e) {
@@ -59,10 +59,6 @@ async function getTeddies() {
                     
                     } else {
 
-                        swal("Produit ajouté au panier", "", "success");
-
-                     console.log(localStorage);
-
                         var cart = {
                             "id" : id,
                             "name" : name,
@@ -71,14 +67,23 @@ async function getTeddies() {
                             "quantity" : quantity,
                             "imageURL" : imageUrl
                         }
+                        
+                        swal("Produit ajouté au panier", "", "success");
 
                         var cartItems = JSON.parse(localStorage.getItem('teddyCart')) || [];
 
                         if (localStorage.getItem('teddyCart') === null) {
 
-                            localStorage.setItem("teddyCart", JSON.stringify(cart));
+                            cartItems.push(cart);
+
+                            localStorage.setItem("teddyCart", JSON.stringify(cart)) || [];
+
+                            console.log(localStorage);
 
                         } else {    
+
+                            console.log(localStorage);
+
                             let itemHasChanged = false;
                             
                             for(let i = 0; i < cartItems.length; i++) {
@@ -99,9 +104,10 @@ async function getTeddies() {
                             cartItems.push(cart); 
                         }
                     }
-                            localStorage.setItem("teddyCart", JSON.stringify(cartItems));
                             
+                            localStorage.setItem("teddyCart", JSON.stringify(cartItems));                            
                         } 
+                        
                  });
              }
         })

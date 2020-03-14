@@ -4,19 +4,26 @@ const buttonDown = document.getElementById('down');
 
 const postUrlAPI = "http://localhost:3000/api/teddies/order";
 
+const totalCartCost = document.getElementById('finalCheckout');
+
 function teddyGet() {
     
     let title = document.querySelector('#checkoutTitle');
 
     let teddyContainer = document.getElementById('teddyContainer');
 
-    let totalCartCost = document.getElementById('finalCheckout');  
-
     let finalCheckout = 0;
 
     if(!cartItems.length) {
 
-        title.textContent = 'Votre panier est vide, merci de vous rendre à la Page Principale et séléctionner un teddy à personnaliser !';
+        title.textContent = 'Oups ! Votre panier est vide, merci de vous rendre à la page principale et séléctionner un teddy à personnaliser !';
+                document.getElementById('viderPanier').style.display="none";
+                document.getElementById('finalPrice').style.display="none";
+                document.getElementById('container').style.paddingBottom="0";
+                document.getElementById('container').style.minHeight="80vh";
+                document.querySelector('#container').style.display="flex";
+                document.querySelector('.hiddenOnForm').style.justifySelf="center";
+                document.querySelector('.hiddenOnForm').style.margin='auto';
 
     } else {
 
@@ -90,12 +97,29 @@ function teddyGet() {
                     finalCheckout += teddyTotalPrice;
                 })
 
-                
-
                 totalCartCost.innerHTML = finalCheckout + ' €';
     }
-
 }
+
+
+function emptyCart() {
+        swal.setActionValue({confirm: false, cancel: true})
+        swal({
+            title: 'Êtes vous sur ?',
+            text: "Vous ne pourrez pas faire machine arrière",
+            icon: 'warning',
+            buttons: {cancel: true, confirm: "Confirmer"},
+            dangerMode: true,
+        }).then((result) => {
+            if (result.false) {
+                swal('Vidage du panier annulé', '', 'success')
+        } else {
+                localStorage.clear();
+                location.reload();
+        }
+    })
+}
+
 
 function confirmCart() {
     document.getElementById("form").style.display="block";
@@ -108,43 +132,64 @@ function closeForm() {
     document.querySelector(".hiddenOnForm").style.display="block";
     document.querySelector('#container').style.backgroundColor="rgb(228, 214, 214)";
   }
+  
 
-
-
-    let confirmOrder = document.getElementById('submitOrder');
-    let product_id = localStorage;
-
-    console.log (product_id);
-    
-    function orderTeddies() {
-        confirmOrder.addEventListener('click', (event) => {
+  
+  
+  
+  let form = document.getElementById('postData');
+  
+function orderTeddies() {   
 
             let firstName = document.getElementById('firstName').value;
             let lastName = document.getElementById('lastName').value;
             let address = document.getElementById('address').value;
             let city = document.getElementById('city').value;
             let email = document.getElementById('email').value;
-            let contact = { firstName, lastName, address, city, email };
+            let contact = { firstName, lastName, address, city, email }; 
 
-            console.log(contact);
+            const products = [];
 
-            fetch(postUrlAPI, {
+            cartItems.forEach(item => {
+                products.push(item.id);
+            })
+
+            const request = new Request(postUrlAPI, {
                 method: 'POST',
-                body: JSON.stringify(product_id, contact)
-            }).then(function(response) {
-                console.log(response);
-                return response.json();
+                body: JSON.stringify({contact, products}),
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                })
+            });
+    
+                fetch(request)
+                .then(response => response.json())
+                .then( (response) => {
+                    console.log(response.orderId);
+                    console.log(contact);
+                if (form.checkValidity() === false) {
+                    swal("Oups ! Quelque chose ne va pas", "Merci de bien vouloir vérifier le formulaire et réessayer", "error");
+                } else if (form.checkValidity() ===true) {
+                    let getOrderId = response.orderId;
+                    console.log(getOrderId);
+                    let getTotalCost = totalCartCost.innerHTML;
+                    localStorage.clear();
+                    let orderRecap = { getOrderId, getTotalCost };
+                    localStorage.setItem("orderIsConfirmed", JSON.stringify(orderRecap));
+                    console.log(localStorage);
+                    swal('Merci pour votre commande !', 'Vous allez être redirigé vers la page de confirmation dans quelques secondes', 'success')
+                    window.location = 'confirmed-page.html';
+                } 
             })
-                if (!response.json) {
-                    window.alert("Un souci s'est produit, merci de bien vouloir réessayer")
-                } else {
-                    window.alert('Merci pour votre commande ! Vous allez être redirigé vers la page de confirmation dans quelques secondes')
-                    confirmOrder.addEventListener('click', function() {
-                        window.open('confirmed-page.html');
-                    });
-                }
-            })
-        }
+     }
+
+                
+
+             
+           
+        
+        
  
 
 

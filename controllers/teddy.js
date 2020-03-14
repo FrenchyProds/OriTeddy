@@ -8,7 +8,6 @@ exports.getAllTeddies = (req, res, next) => {
         teddy.imageUrl = req.protocol + '://' + req.get('host') + '/images/' + teddy.imageUrl;
         return teddy;
       });
-      console.log(mappedTeddies);
       res.status(200).json(mappedTeddies);
     }
   ).catch(
@@ -48,6 +47,15 @@ exports.getOneTeddy = (req, res, next) => {
  *
  */
 exports.orderTeddies = (req, res, next) => {
+  if (!req.body.contact ||
+    !req.body.contact.firstName ||
+    !req.body.contact.lastName ||
+    !req.body.contact.address ||
+    !req.body.contact.city ||
+    !req.body.contact.email ||
+    !req.body.products) {
+  return res.status(400).send(new Error('Bad request!'));
+}
   let queries = [];
   for (let productId of req.body.products) {
     const queryPromise = new Promise((resolve, reject) => {

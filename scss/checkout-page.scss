@@ -130,6 +130,10 @@ body {
     padding-bottom: 3rem;
 }
 
+#teddyContainer {
+    padding-bottom: 1.5rem;
+}
+
 #teddyContainer img {
     margin: auto;
     grid-area: photo;
@@ -219,6 +223,31 @@ body {
     }
 }
 
+#viderPanier {
+    text-align: center;
+    transform: scale(1.4);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    background-color: #e0513e;
+    max-width: fit-content;
+    margin: 0rem auto 1rem auto;
+    
+    & button {
+        cursor: pointer;
+        &:hover {
+            color: #0090e3;
+        }
+    }
+    & i {
+        color: #fff;
+        font-size: 22px;
+            padding: 5px 8px;
+            justify-self: center;
+    }
+}
+
 #finalPrice {
     padding-top: 2rem;
     margin-bottom: 3rem;
@@ -232,13 +261,18 @@ body {
     padding-bottom: 1rem;
 }
 
+.doubleButton {
+    display: flex;
+    flex-direction: column; 
+}
+
 .checkout {
     transform: scale(1.4);
-    margin-bottom: 3rem;
     flex: 1;
     display: flex;
-    margin: auto;
+    margin: 2rem auto 0rem auto;
     color: #fff;
+    align-items: center;
     background-color: #0090e3;
     max-width: fit-content;
     justify-content: flex-end;
@@ -255,13 +289,9 @@ body {
     }
   }
 
-  .btn-default {
-  flex: 1;
-  transition: 0.4s;
-  color: #fff;
-  background-color: #303030;
-  text-transform: uppercase;
-}
+  #checkoutTitle{
+      margin: auto;
+  }
 
 input[type=text], input[type=email], select, textarea {
     font-size: 1.3rem;
@@ -279,14 +309,14 @@ input[type=text], input[type=email], select, textarea {
   }
 
   input[type=text]:focus, input[type=email]:focus {
-    outline-color: salmon;
+    outline-color: rgb(177, 40, 25);
 }
 
   input[type=text]:valid:focus, input[type=email]:valid:focus {
-    outline-color: lime;
+    outline-color: rgb(3, 150, 3);
 }
   
-  input[type=submit] {
+  #confirmOrder {
     font-size: 1.3rem;
     text-align: center;
     background-color: #4CAF50;
@@ -296,11 +326,12 @@ input[type=text], input[type=email], select, textarea {
     border-radius: 4px;
     cursor: pointer;
     font-weight: 700;
-  }
-
-  input[type=submit]:hover {
+    & :hover {
     background-color: #45a049;
   }
+  }
+
+
 
   input:invalid {
     border-left-color: salmon;
