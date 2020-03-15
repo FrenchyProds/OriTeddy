@@ -1,17 +1,17 @@
-const urlAPI = "http://localhost:3000/api/teddies";
+const urlAPI = "http://localhost:3000/api/teddies";                 
 const teddyAppend = document.getElementById("product-pull");
 const teddyColorAppend = document.getElementById("teddy-colors");
 
-async function getTeddies() {
+async function getTeddies() {                       // Cette partie est très similaire à index.js
     let response = await fetch(urlAPI);
     let data = await response.json()
     .then((data) => {
         data.forEach((teddy) => {
             const { name, _id, colors, price, description, imageUrl } = teddy
-            let id = `${_id}`;
+            let id = `${_id}`;                      // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html
             
-            if(window.location.href.indexOf(id) > -1) 
-            {
+            if(window.location.href.indexOf(id) > -1)       // On récupère l'id trouvé dans l'url de la page
+            {                                               // L'ourson qui a la même id que celle dans l'url sera chargé
                 teddyAppend.innerHTML +=
                     `<div class="teddyImport">
                         <h3 class="teddyName">${name}</h3>
@@ -42,27 +42,28 @@ async function getTeddies() {
 
                         const panier = document.getElementById("panier");
 
+                // Boucle qui sert à trouver combien de couleurs il y a pour chaque teddy
                 for (let i = 0; i < colors.length; i++) {
                     teddyColorAppend.innerHTML +=
                     `<option value="${colors[i]}" selected="selected">${colors[i]} /</option>`;
                 }
-                    
+                    // Ajout d'une fonction 'onclick' sur le bouton "Ajouter au panier"
                     panier.addEventListener('click', function(e) {
                         
                     var color = document.querySelector('select').value;
 
                     var quantity = document.getElementById('quantityInput').value;
-
+                    // Ce if / else permet de s'assurer que l'utilisateur remplisse la case "quantité" avec au moins 1
                     if (quantity < 1) { 
-                        
+                    // Si l'utilisateur laisse l'input vierge, tape 0 ou -x, une erreur sera renvoyée   
                         swal("Vous n'avez pas oublié quelque chose ?", "Il va vous falloir au moins 1 teddy !", "error");
                     
                     } else {
-
+                    // Par contre si l'utilisateur entre une valeur de 1 ou plus, tout le code suivant sera éxécuté
                         var cart = {
                             "id" : id,
                             "name" : name,
-                            "price" : price/100,
+                            "price" : price/100,            // Déclaration de cart, un objet représentant un teddy type
                             "color" : color,
                             "quantity" : quantity,
                             "imageURL" : imageUrl
@@ -70,42 +71,48 @@ async function getTeddies() {
                         
                         swal("Produit ajouté au panier", "", "success");
 
+                        // Première utilisation du localStorage - Ici on vérifié si nous avons quelque chose dedans
                         var cartItems = JSON.parse(localStorage.getItem('teddyCart')) || [];
 
-                        if (localStorage.getItem('teddyCart') === null) {
+                        // If / Else servant à éxécuter du code en fonction de s'il y a du contenu dans le localStorage
+                        if (localStorage.getItem('teddyCart') === null) { /* Si le localStorage est vide */
 
-                            cartItems.push(cart);
+                            cartItems.push(cart);       // On va ajouter le produit actuel à l'array cartItems
 
-                            localStorage.setItem("teddyCart", JSON.stringify(cart)) || [];
+                            localStorage.setItem("teddyCart", JSON.stringify(cart)) || []; // Puis créer notre localStorage 'teddyCart
 
-                            console.log(localStorage);
+                        } else {    // Par contre, si le localStorage a déjà du contenu
 
-                        } else {    
-
-                            console.log(localStorage);
-
-                            let itemHasChanged = false;
+                            let itemHasChanged = false; // Cette déclaration servira pour contrôler les doublons
                             
-                            for(let i = 0; i < cartItems.length; i++) {
-                                
-                                if((cartItems[i].name == cart.name) && cartItems[i].color == cart.color) {
+                            for(let i = 0; i < cartItems.length; i++) {   
+                                // en fonction de la quantité de produits dans le localStorage
+                                // S'il y a déjà un item avec un nom ET une couleur identique
+                                if((cartItems[i].name == cart.name) && cartItems[i].color == cart.color) { 
                               
-                                  let cartItemsQuantityNumber = Number(cartItems[i].quantity);
-                                  let cartQuantityNumber = Number(cart.quantity);
+                                  let cartItemsQuantityNumber = Number(cartItems[i].quantity); 
+                                  // On récupère la quantité du produit en cours d'ajout
+                                  let cartQuantityNumber = Number(cart.quantity);   
+                                  // Ainsi que la quantité de produits identiques déjà présents dans le localStorage
                               
                                   let sumQuantity = cartItemsQuantityNumber + cartQuantityNumber;
+                                     // On additionne ces deux quantités
                               
                                   cartItems[i].quantity = sumQuantity.toString();
-                                  itemHasChanged = true;
+                                     // Et on remplace la quantité du localStorage par cette nouvelle quantité
+                                  itemHasChanged = true;  
                                 }
                             }
 
-                        if(itemHasChanged == false) {
-                            cartItems.push(cart); 
-                        }
-                    }
+                        if(itemHasChanged == false) {  
+                            // Il y a déjà des produits dans le panier mais pas identiques à ceux qui sont en ajout
+                            cartItems.push(cart);       
+                            // Donc on peut simplement push les nouveaux produits pour les ajouter à l'array cartItems
+                                }
+                            }   
                             
-                            localStorage.setItem("teddyCart", JSON.stringify(cartItems));                            
+                            localStorage.setItem("teddyCart", JSON.stringify(cartItems));   
+                            // Puis stringify le contenu de cartItems pour l'ajouter au localStorage                      
                         } 
                         
                  });
@@ -115,7 +122,7 @@ async function getTeddies() {
     return data;
 }
 
-window.onload = () => {
+window.onload = () => {     /* Encore une fois, on charge la fonction au lancement de la page */
     getTeddies();
 }
 
