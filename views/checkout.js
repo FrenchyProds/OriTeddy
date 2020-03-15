@@ -178,8 +178,8 @@ function orderTeddies() {
                     let orderRecap = { getOrderId, getTotalCost };
                     localStorage.setItem("orderIsConfirmed", JSON.stringify(orderRecap));
                     console.log(localStorage);
-                    swal('Merci pour votre commande !', 'Vous allez être redirigé vers la page de confirmation dans quelques secondes', 'success')
-                    window.location = 'confirmed-page.html';
+                    swal("Merci pour votre commande !", "Vous allez être redirigé vers la page de confirmation dans quelques secondes", "success");
+                    setTimeout(function() {window.location = 'confirmed-page.html'; }, 3000);
                 } 
             })
      }
