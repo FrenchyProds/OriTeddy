@@ -254,6 +254,7 @@ select {
   display: table-row;
   height: 3.3vh;
   overflow: hidden;
+  font-size: 1.3rem;
 }
 
 select::after {
@@ -355,15 +356,15 @@ option {
 }
 .checkout .icon-card {
   font-size: 22px;
-  padding: 5px 8px;
   justify-self: center;
 }
 
 .btn-default {
   flex: 1;
   transition: 0.4s;
+  font-weight: 700;
   color: #fff;
-  background-color: #303030;
+  background-color: #139930;
   text-transform: uppercase;
 }
 

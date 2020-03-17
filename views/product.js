@@ -45,8 +45,9 @@ async function getTeddies() {                       // Cette partie est très si
                 // Boucle qui sert à trouver combien de couleurs il y a pour chaque teddy
                 for (let i = 0; i < colors.length; i++) {
                     teddyColorAppend.innerHTML +=
-                    `<option value="${colors[i]}" selected="selected">${colors[i]} /</option>`;
+                    `<option id="appendedColors" value="${colors[i]}" selected="selected">  ${colors[i]}  </option>`;
                 }
+
                     // Ajout d'une fonction 'onclick' sur le bouton "Ajouter au panier"
                     panier.addEventListener('click', function(e) {
                         

@@ -82,6 +82,7 @@ select {
     display: table-row;
     height: 3.3vh;
     overflow: hidden;
+    font-size: 1.3rem;
 }
 
 select::after {
@@ -146,7 +147,6 @@ option {
     justify-content: flex-end;
     & .icon-card {
             font-size: 22px;
-            padding: 5px 8px;
             justify-self: center;
     }
   }
@@ -154,8 +154,9 @@ option {
   .btn-default {
   flex: 1;
   transition: 0.4s;
+  font-weight: 700;
   color: #fff;
-  background-color: #303030;
+  background-color: rgb(19, 153, 48);
   text-transform: uppercase;
 }
 

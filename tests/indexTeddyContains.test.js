@@ -1,6 +1,7 @@
 const urlAPI = "http://localhost:3000/api/teddies";         // Déclaration de l'Url de l'api
 const teddyAppend = document.getElementById("mainPage");
 
+test('The information being appended === what is in the API', () => {
 async function getTeddies() {                       // Création d'une fonction asynchrone
     let response = await fetch(urlAPI);           // La réponse de cette fonction est d'attendre la réponse (en json) de l'api
     let data = await response.json()                // Une fois qu'on a la réponse on peut la déclarer (data)
@@ -18,16 +19,14 @@ async function getTeddies() {                       // Création d'une fonction 
             </div>`;         
                                                // Cette partie de récupération de l'id est très
                                                      // importante pour la page suivante
-        })                                                      
-    })
+                expect(teddy.name()).toContain("test")
+                expect(teddy._id()).toContain("5be9c8541c9d440000665243")
+                expect(teddy.colors()).toContain("White")
+                expect(teddy.price()).toContain("2900")
+                expect(teddy.description()).toContain("azrmofi ham oiahz fmoasihfasmdoi fhadsmofi hasmo ifahdsmo fiasdh miodash")
+                expect(teddy.imageUrl()).toContain("http://localhost:3000/images/teddy_1.jpg")
+            })                                                      
+        })
     return data;
-}
-
-window.onload = () => {                 // Force le lancement de la fonction getTeddies() au chargement de la page
-    getTeddies();
-}
-
-
-
-
-
+    }
+})
