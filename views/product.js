@@ -51,9 +51,9 @@ async function getTeddies() {                       // Cette partie est très si
                     // Ajout d'une fonction 'onclick' sur le bouton "Ajouter au panier"
                     panier.addEventListener('click', function(e) {
                         
-                    var color = document.querySelector('select').value;
+                    let color = document.querySelector('select').value;
 
-                    var quantity = document.getElementById('quantityInput').value;
+                    let quantity = document.getElementById('quantityInput').value;
                     // Ce if / else permet de s'assurer que l'utilisateur remplisse la case "quantité" avec au moins 1
                     if (quantity < 1) { 
                     // Si l'utilisateur laisse l'input vierge, tape 0 ou -x, une erreur sera renvoyée   
@@ -61,7 +61,7 @@ async function getTeddies() {                       // Cette partie est très si
                     
                     } else {
                     // Par contre si l'utilisateur entre une valeur de 1 ou plus, tout le code suivant sera éxécuté
-                        var cart = {
+                        let cart = {
                             "id" : id,
                             "name" : name,
                             "price" : price/100,            // Déclaration de cart, un objet représentant un teddy type
@@ -73,7 +73,7 @@ async function getTeddies() {                       // Cette partie est très si
                         swal("Produit ajouté au panier", "", "success");
 
                         // Première utilisation du localStorage - Ici on vérifié si nous avons quelque chose dedans
-                        var cartItems = JSON.parse(localStorage.getItem('teddyCart')) || [];
+                        let cartItems = JSON.parse(localStorage.getItem('teddyCart')) || [];
 
                         // If / Else servant à éxécuter du code en fonction de s'il y a du contenu dans le localStorage
                         if (localStorage.getItem('teddyCart') === null) { /* Si le localStorage est vide */

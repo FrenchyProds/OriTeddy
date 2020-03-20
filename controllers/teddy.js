@@ -8,7 +8,8 @@ exports.getAllTeddies = (req, res, next) => {
         teddy.imageUrl = req.protocol + '://' + req.get('host') + '/images/' + teddy.imageUrl;
         return teddy;
       });
-      res.status(200).json(mappedTeddies);
+     // res.status(200).json(mappedTeddies);
+        res.send('../views/index.html', json(mappedTeddies));
     }
   ).catch(
     (error) => {

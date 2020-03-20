@@ -37,7 +37,6 @@ header {
   display: flex;
   flex-flow: row nowrap;
   background-color: #343a40;
-  width: 98.932vw;
   margin: auto;
   justify-content: flex-start;
 }
@@ -106,7 +105,6 @@ h1 {
   flex-flow: row nowrap;
   justify-content: space-between;
   background-color: #343a40;
-  width: 98.932vw;
   margin: auto;
 }
 .navbar-footer a {
