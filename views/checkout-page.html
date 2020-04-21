@@ -73,16 +73,16 @@
                 <div id="onclick--form">
                     <form class="form-container" id="postData">
                         <label for="firstName">Prénom</label>
-                        <input type="text" name="firstName" placeholder="Votre prénom..." id="firstName" maxlength="20" required>
+                        <input type="text" name="firstName" placeholder="Votre prénom..." pattern="[a-z-'éèA-Z]+" id="firstName" maxlength="20" required>
 
                         <label for="lastName">Nom de Famille</label>
-                        <input type="text" name="lastName" placeholder="Votre nom..." id="lastName" maxlength="30" required>
+                        <input type="text" name="lastName" placeholder="Votre nom..." pattern="[a-z-'éèA-Z]+" id="lastName" maxlength="30" required>
 
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" placeholder="Votre adresse..." id="address" maxlength="60" required>
+                        <input type="text" name="address" placeholder="Votre adresse..." pattern="[0-9 'éèa-zA-Z]+" id="address" maxlength="60" required>
 
                         <label for="city">Ville</label>
-                        <input type="text" name="city" placeholder="Votre ville..." id="city" maxlength="35" required>
+                        <input type="text" name="city" placeholder="Votre ville..." pattern="[a-z-'éè A-Z]+" id="city" maxlength="35" required>
 
                         <label for="email">Email</label>
                         <input type="email" name="email" placeholder="exemple123@test.com" id="email" required>
