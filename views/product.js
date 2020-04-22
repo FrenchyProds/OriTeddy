@@ -3,7 +3,7 @@ const teddyAppend = document.getElementById("product-pull");
 const teddyColorAppend = document.getElementById("teddy-colors");
 
 async function getTeddies() {                       // Cette partie est très similaire à index.js
-    var flag = 0;
+    var flag = 0;                       // Déclaration d'un flag qui servira plus tard pour la page d'erreur
     
     let response = await fetch(urlAPI);
     let data = await response.json()
@@ -11,14 +11,10 @@ async function getTeddies() {                       // Cette partie est très si
     .then((data) => {
         data.forEach((teddy) => {
             const { name, _id, colors, price, description, imageUrl } = teddy
-            let id = `${_id}`; 
-            console.log(window.location.href.indexOf(id));                  // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html
-            if(window.location.href.indexOf(id) > -1) {
-                flag++;
-                console.log(flag);
-                
-                // On récupère l'id trouvé dans l'url de la page et la compare à l'id de l'ourson actuel
-               if (flag == 1) {                                              // L'ourson qui a la même id que celle dans l'url sera chargé
+            let id = `${_id}`;                              // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html                
+            if(window.location.href.indexOf(id) > -1) {     // On récupère l'id trouvé dans l'url de la page et la compare à l'id de l'ourson actuel
+                flag++;                                     // Si l'id du teddy est trouvé dans l'url, le flag s'incrémente
+               if (flag == 1) {                             // Si le flag a été incrémenté, le contenu est généré                        
                 teddyAppend.innerHTML +=
                     `<div class="teddyImport">
                         <h3 class="teddyName">${name}</h3>
@@ -121,17 +117,13 @@ async function getTeddies() {                       // Cette partie est très si
                             
                             localStorage.setItem("teddyCart", JSON.stringify(cartItems));   
                             // Puis stringify le contenu de cartItems pour l'ajouter au localStorage                      
-                        } 
-                 });
-             } else { // Si l'url ne fait pas 112 caractères de long, le script renverra une page d'erreur */
-                 window.location = "error.html";
-                 console.log(flag);
-             }
-            }
-        })
-        if (flag === 0) {
-            window.location = "error.html";
-             console.log(flag);
+                            } 
+                        });
+                    }
+                }
+            })
+            if (flag === 0) {           // Si le flag ne s'est pas incrémenté, renvoi vers la page d'erreur
+                window.location = "error.html";
         }
     })
     return data;
