@@ -2,18 +2,19 @@ const urlAPI = "http://localhost:3000/api/teddies";
 const teddyAppend = document.getElementById("product-pull");
 const teddyColorAppend = document.getElementById("teddy-colors");
 
-console.log(window.location.href.length);
-
-
 async function getTeddies() {                       // Cette partie est très similaire à index.js
+    var flag = 0;
     let response = await fetch(urlAPI);
     let data = await response.json()
     .then((data) => {
         data.forEach((teddy) => {
             const { name, _id, colors, price, description, imageUrl } = teddy
             let id = `${_id}`;                   // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html
-            if(window.location.href.indexOf(id) > -1)      // On récupère l'id trouvé dans l'url de la page et la compare à l'id de l'ourson actuel
-                {                                               // L'ourson qui a la même id que celle dans l'url sera chargé
+            if(window.location.href.indexOf(id) > -1) {
+                flag++;
+                console.log(flag);
+                // On récupère l'id trouvé dans l'url de la page et la compare à l'id de l'ourson actuel
+               if (flag == 1) {                                              // L'ourson qui a la même id que celle dans l'url sera chargé
                 teddyAppend.innerHTML +=
                     `<div class="teddyImport">
                         <h3 class="teddyName">${name}</h3>
@@ -118,9 +119,11 @@ async function getTeddies() {                       // Cette partie est très si
                             // Puis stringify le contenu de cartItems pour l'ajouter au localStorage                      
                         } 
                  });
-             } else if (window.location.href.length !== 112) { // Si l'url ne fait pas 112 caractères de long, le script renverra une page d'erreur */
+             } else { // Si l'url ne fait pas 112 caractères de long, le script renverra une page d'erreur */
                  window.location = "error.html";
+                 console.log(flag);
              }
+            } 
         })
     })
     return data;
