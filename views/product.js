@@ -4,15 +4,19 @@ const teddyColorAppend = document.getElementById("teddy-colors");
 
 async function getTeddies() {                       // Cette partie est très similaire à index.js
     var flag = 0;
+    
     let response = await fetch(urlAPI);
     let data = await response.json()
+    
     .then((data) => {
         data.forEach((teddy) => {
             const { name, _id, colors, price, description, imageUrl } = teddy
-            let id = `${_id}`;                   // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html
+            let id = `${_id}`; 
+            console.log(window.location.href.indexOf(id));                  // On déclare "id" commme étant l'id du teddy selectionné sur la page index.html
             if(window.location.href.indexOf(id) > -1) {
                 flag++;
                 console.log(flag);
+                
                 // On récupère l'id trouvé dans l'url de la page et la compare à l'id de l'ourson actuel
                if (flag == 1) {                                              // L'ourson qui a la même id que celle dans l'url sera chargé
                 teddyAppend.innerHTML +=
@@ -123,11 +127,16 @@ async function getTeddies() {                       // Cette partie est très si
                  window.location = "error.html";
                  console.log(flag);
              }
-            } 
+            }
         })
+        if (flag === 0) {
+            window.location = "error.html";
+             console.log(flag);
+        }
     })
     return data;
 }
+
 
 
 
